@@ -14,24 +14,34 @@
   </head>
   <body>
     <header>
-      <h1>Monster Slayer</h1>
+      <h1>Hutong Hero</h1>
     </header>
     <div id="game">
+      <div class="char-container">
       <section id="monster" class="container">
-        <h2>Monster Health</h2>
-        <p class="HP">{{ monsterHealth }} HP</p>
-
+        <h2>CPU: Beijing Bikini</h2>
+        <img class="monster-image" src='./bjbikini.png' />
+        <div class="bar-and-hp">
+        <p class="hp-bar">HP</p>
         <div class="healthbar">
           <div class="healthbar__value" :style="monsterBarStyles"></div>
         </div>
+      </div>
+      <h4 class="hp-fraction">{{getMonsterHealth() }}/100</h4>
       </section>
+      <h2>VS</h2>
       <section id="player" class="container">
-        <h2>Your Health</h2>
-        <p class="HP">{{ playerHealth }} HP</p>
-        <div class="healthbar">
-          <div class="healthbar__value" :style="playerBarStyles"></div>
+        <h2>P1: Laowai</h2>
+        <img class="player-image" src='./laowai.png' />
+        <div class="bar-and-hp">
+          <p class="hp-bar">HP</p>
+          <div class="healthbar">
+            <div class="healthbar__value" :style="playerBarStyles"></div>
+          </div>
         </div>
+        <h4 class="hp-fraction">{{ getPlayerHealth() }}/100</h4>
       </section>
+    </div>
       <section class="container" v-if="winner">
         <h2>Game Over!</h2>
         <h3 v-if="winner === 'monster'">You Lost!</h3>
@@ -40,9 +50,11 @@
         <button @click='startGame'>Start New Game</button>
       </section>
       <section id="controls" v-else>
-        <button @click="attackMonster">ATTACK</button>
-        <button :disabled="specialAttackAvailable" @click="specialAttackMonster">SPECIAL ATTACK</button>
-        <button @click="healPlayer">HEAL</button>
+        <button @click="attackMonster">Basic: 'Bu Yao!'</button>
+        <button :disabled="specialAttackAvailable" @click="specialAttackMonster">
+          Special: 'Teach English'
+        </button>
+        <button @click="healPlayer">HEAL: Drink Beer</button>
         <button @click="surrender">SURRENDER</button>
       </section>
       <section id="log" class="container">
