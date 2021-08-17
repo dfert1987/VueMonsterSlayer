@@ -117,3 +117,7 @@ button:disabled {
 .log--heal {
   color: green;
 }
+
+.HP {
+  background-color: none;
+}

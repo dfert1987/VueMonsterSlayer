@@ -19,12 +19,15 @@
     <div id="game">
       <section id="monster" class="container">
         <h2>Monster Health</h2>
+        <p class="HP">{{ monsterHealth }} HP</p>
+
         <div class="healthbar">
           <div class="healthbar__value" :style="monsterBarStyles"></div>
         </div>
       </section>
       <section id="player" class="container">
         <h2>Your Health</h2>
+        <p class="HP">{{ playerHealth }} HP</p>
         <div class="healthbar">
           <div class="healthbar__value" :style="playerBarStyles"></div>
         </div>
