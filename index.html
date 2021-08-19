@@ -49,18 +49,44 @@
         <h3 v-else="winner === 'draw">Draw...</h3>
         <button @click='startGame'>Start New Game</button>
       </section>
+      <div class="control-and-log">
+        <section id="log" class="container">
+          <h2>Battle Log</h2>
+          <ul>
+            <li v-for="logMessage in logMessages">
+              <span :class="{'log--player': logMessage.actionBy === 'player', 'log--monster': logMessage.actionBy === 'monster'}"
+              >{{ logMessage.actionBy === 'player' ? 'LaoWai' : 'Beijing Bikini' }}</span>
+              <span v-if="logMessage.actionType === 'heal'"> heals himself using beer for 
+                 <span class="log--heal"> {{ logMessage.actionValue }} hp regeneration.</span>
+              </span>
+              <span v-else-if="logMessage.actionType === 'attack' && logMessage.actionBy === 'player'">
+                attacks using "Bu Yao!" and deals 
+                <span class="log--damage">{{ logMessage.actionValue }} hp in damage.</span>
+              </span>
+              <span v-else-if="logMessage.actionType === 'attack' && logMessage.actionBy === 'monster'">
+                attacks using "Belly Rub!" and deals 
+                <span class="log--damage">{{ logMessage.actionValue }} hp in damage.</span>
+              </span>
+              <span v-else-if="logMessage.actionType === 'special' && logMessage.actionBy === 'monster'">
+                attacks using "Baijiu burp!" and deals 
+                <span class="log--damage">{{ logMessage.actionValue }} hp in damage.</span>
+              </span>
+              <span v-else>
+                attacks using "Teaches English!" and deals 
+                <span class="log--damage">{{ logMessage.actionValue }} hp in damage.</span>
+              </span>
+            </li>
+          </ul>
+        </section>
       <section id="controls" v-else>
-        <button @click="attackMonster">Basic: 'Bu Yao!'</button>
-        <button :disabled="specialAttackAvailable" @click="specialAttackMonster">
+        <button :disabled="attacksAvailable === false" @click="attackMonster">Basic: 'Bu Yao!'</button>
+        <button :disabled="specialAttackAvailable || attacksAvailable === false" @click="specialAttackMonster">
           Special: 'Teach English'
         </button>
-        <button @click="healPlayer">HEAL: Drink Beer</button>
+        <button :disabled="attacksAvailable === false" @click="healPlayer">HEAL: Drink Beer</button>
         <button @click="surrender">SURRENDER</button>
       </section>
-      <section id="log" class="container">
-        <h2>Battle Log</h2>
-        <ul></ul>
-      </section>
+    </div>
     </div>
   </body>
 </html>

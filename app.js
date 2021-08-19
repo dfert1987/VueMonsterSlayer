@@ -9,7 +9,10 @@ const app = Vue.createApp({
         playerHealth: 100,
         monsterHealth: 100,
         currentRound: 0,
-        winner: null
+        winner: null,
+        message: '',
+        logMessages: [],
+        attacksAvailable: true,
       };
     },
     computed: {
@@ -28,7 +31,6 @@ const app = Vue.createApp({
         specialAttackAvailable() {
             return this.currentRound % 3 !== 0;
         },
-
     },
     watch : {
         playerHealth(value) {
@@ -46,41 +48,67 @@ const app = Vue.createApp({
             }
         },
     },
+
     methods: {
         attackMonster() {
             this.currentRound ++;
             const attackValue = getRandomNumber(5, 12);
             this.monsterHealth -= attackValue;
-            setTimeout(() => { this.attackPlayer() }, 2000);
+            this.addLogMessage('player', 'attack', attackValue);
+            this.attacksAvailable = false;
+            setTimeout(() => { this.attackPlayer() }, 3000);
         },
         attackPlayer() {
             const attackValue = getRandomNumber(8, 15);
-            this.playerHealth -= attackValue;
-        },
+            const specialValue = getRandomNumber(10, 18);
+            console.log(this.currentRound)
+            if (this.currentRound % 3 !== 0) {
+                this.playerHealth -= attackValue;
+                this.addLogMessage('monster', 'attack', attackValue);
+                this.attacksAvailable = true;
+            } 
+            if (this.currentRound % 3 === 0){
+                this.playerHealth -= specialValue;
+                this.addLogMessage('monster', 'special', specialValue);
+                this.attacksAvailable = true;
+                }
+            },
         specialAttackMonster() {            
             this.currentRound ++;
             const attackValue = getRandomNumber(10, 25);
-            this.monsterHealthe -= attackValue;
-            this.attackPlayer();
+            this.monsterHealth -= attackValue;
+            this.addLogMessage('player', 'special', attackValue);
+            this.attacksAvailable = false;
+            setTimeout(() =>  { this.attackPlayer() }, 3000);
         },
         healPlayer() {
             this.currentRound++;
             const healValue = getRandomNumber(8, 20);
-            if (this.playerHealth = healValue > 100) {
+            if (this.playerHealth + healValue > 100) {
                 this.playerHealth = 100;
             } else {
                 this.playerHealth += healValue;
             }
-            this.attackPlayer();
+            this.addLogMessage('player', 'heal', healValue);
+            this.attacksAvailable = false;
+            setTimeout(() => { this.attackPlayer() }, 3000);
         },
         startGame() {
             this.playerHealth = 100;
             this.monsterHealth = 100;
             this.winner = null;
             this.currentRound = 0;
+            this.logMessages = [];
         },
         surrender() {
            this.winner = 'monster'; 
+        },
+        addLogMessage(who, what, value) {
+            this.logMessages.unshift({
+                actionBy: who,
+                actionType: what,
+                actionValue: value
+            });
         },
         getPlayerHealth() {
             if (this.playerHealth > 0) {
@@ -95,7 +123,7 @@ const app = Vue.createApp({
             } else {
                 return 0;
             }
-        }
+        },
     },
 });
 
