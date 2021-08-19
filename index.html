@@ -14,21 +14,34 @@
   </head>
   <body>
     <header>
-      <h1>Monster Slayer</h1>
+      <h1>Hutong Hero</h1>
     </header>
     <div id="game">
+      <div class="char-container">
       <section id="monster" class="container">
-        <h2>Monster Health</h2>
+        <h2>CPU: Beijing Bikini</h2>
+        <img class="monster-image" src='./bjbikini.png' />
+        <div class="bar-and-hp">
+        <p class="hp-bar">HP</p>
         <div class="healthbar">
           <div class="healthbar__value" :style="monsterBarStyles"></div>
         </div>
+      </div>
+      <h4 class="hp-fraction">{{getMonsterHealth() }}/100</h4>
       </section>
+      <h2>VS</h2>
       <section id="player" class="container">
-        <h2>Your Health</h2>
-        <div class="healthbar">
-          <div class="healthbar__value" :style="playerBarStyles"></div>
+        <h2>P1: Laowai</h2>
+        <img class="player-image" src='./laowai.png' />
+        <div class="bar-and-hp">
+          <p class="hp-bar">HP</p>
+          <div class="healthbar">
+            <div class="healthbar__value" :style="playerBarStyles"></div>
+          </div>
         </div>
+        <h4 class="hp-fraction">{{ getPlayerHealth() }}/100</h4>
       </section>
+    </div>
       <section class="container" v-if="winner">
         <h2>Game Over!</h2>
         <h3 v-if="winner === 'monster'">You Lost!</h3>
@@ -36,16 +49,44 @@
         <h3 v-else="winner === 'draw">Draw...</h3>
         <button @click='startGame'>Start New Game</button>
       </section>
+      <div class="control-and-log">
+        <section id="log" class="container">
+          <h2>Battle Log</h2>
+          <ul>
+            <li v-for="logMessage in logMessages">
+              <span :class="{'log--player': logMessage.actionBy === 'player', 'log--monster': logMessage.actionBy === 'monster'}"
+              >{{ logMessage.actionBy === 'player' ? 'LaoWai' : 'Beijing Bikini' }}</span>
+              <span v-if="logMessage.actionType === 'heal'"> heals himself using beer for 
+                 <span class="log--heal"> {{ logMessage.actionValue }} hp regeneration.</span>
+              </span>
+              <span v-else-if="logMessage.actionType === 'attack' && logMessage.actionBy === 'player'">
+                attacks using "Bu Yao!" and deals 
+                <span class="log--damage">{{ logMessage.actionValue }} hp in damage.</span>
+              </span>
+              <span v-else-if="logMessage.actionType === 'attack' && logMessage.actionBy === 'monster'">
+                attacks using "Belly Rub!" and deals 
+                <span class="log--damage">{{ logMessage.actionValue }} hp in damage.</span>
+              </span>
+              <span v-else-if="logMessage.actionType === 'special' && logMessage.actionBy === 'monster'">
+                attacks using "Baijiu burp!" and deals 
+                <span class="log--damage">{{ logMessage.actionValue }} hp in damage.</span>
+              </span>
+              <span v-else>
+                attacks using "Teaches English!" and deals 
+                <span class="log--damage">{{ logMessage.actionValue }} hp in damage.</span>
+              </span>
+            </li>
+          </ul>
+        </section>
       <section id="controls" v-else>
-        <button @click="attackMonster">ATTACK</button>
-        <button :disabled="specialAttackAvailable" @click="specialAttackMonster">SPECIAL ATTACK</button>
-        <button @click="healPlayer">HEAL</button>
+        <button :disabled="attacksAvailable === false" @click="attackMonster">Basic: 'Bu Yao!'</button>
+        <button :disabled="specialAttackAvailable || attacksAvailable === false" @click="specialAttackMonster">
+          Special: 'Teach English'
+        </button>
+        <button :disabled="attacksAvailable === false" @click="healPlayer">HEAL: Drink Beer</button>
         <button @click="surrender">SURRENDER</button>
       </section>
-      <section id="log" class="container">
-        <h2>Battle Log</h2>
-        <ul></ul>
-      </section>
+    </div>
     </div>
   </body>
 </html>
