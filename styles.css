@@ -205,7 +205,6 @@ button:disabled {
   text-align: center;
 }
 
-
 .select-char-container {
   display: flex;
   flex-direction: row;
@@ -226,4 +225,31 @@ button:disabled {
   color: white;
   height: 50px;
   margin: 0;
+}
+
+.choose-character-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-select {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3em;
+}
+
+.enemy-title {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.enemy-p1-choose {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.start {
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -5,6 +5,7 @@ function getRandomNumber(min, max) {
 const app = Vue.createApp({
   data() {
     return {
+      start: false,
       playerHealth: 100,
       monsterHealth: 100,
       currentRound: 0,

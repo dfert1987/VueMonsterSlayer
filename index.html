@@ -38,7 +38,7 @@
             <h2>P1: {{ char.name }}</h2>
             <h3 class="class-type">Class: {{ char.class }}</h3>
           </div>
-          <img class="player-image" :src= "char.image"/>
+          <img class="player-image" :src="char.image" />
           <div class="bar-and-hp">
             <p class="hp-bar">HP</p>
             <div class="healthbar">
@@ -48,17 +48,34 @@
           <h4 class="hp-fraction">{{ getPlayerHealth() }}/100</h4>
         </section>
       </div>
-      <section v-if="currentRound === 0" class="choose-character-container">
-        <h2 class="choose-char">Choose Your Hero!</h2>
-        <div class="select-char-container">
-          <button :disabled="index === 0" @click="indexDown" class="left-arrow">
-            <img class="arrow" src="./white-arrow-png-41962.png" />
-          </button>
-          <button :disabled="index === chars.length - 1" @click="indexUp" class="right-arrow">
-            <img class="arrow" src="./white-arrow-png-41958.png" />
-          </button>
+      <div v-if="!start" class="choose-character-container">
+        <div class="enemy-p1-choose">
+          <div class="randomizer-container">
+            <h2 class="enemy-title">Get and Enemy</h2>
+            <button class="randomizer">Random Enemy</button>
+          </div>
+          <div class="player-select">
+            <h2 class="choose-char">Choose Your Hero!</h2>
+            <div class="select-char-container">
+              <button
+                :disabled="index === 0"
+                @click="indexDown"
+                class="left-arrow"
+              >
+                <img class="arrow" src="./white-arrow-png-41962.png" />
+              </button>
+              <button
+                :disabled="index === chars.length - 1"
+                @click="indexUp"
+                class="right-arrow"
+              >
+                <img class="arrow" src="./white-arrow-png-41958.png" />
+              </button>
+            </div>
+          </div>
         </div>
-      </section>
+        <button @click="start = true"class="start">START</button>
+      </div>
       <section class="container" v-if="winner">
         <h2>Game Over!</h2>
         <h3 v-if="winner === 'monster'">You Lost!</h3>
@@ -66,7 +83,7 @@
         <h3 v-else="winner === 'draw">Draw...</h3>
         <button @click="startGame">Start New Game</button>
       </section>
-      <div class="control-and-log">
+      <div v-if="start" class="control-and-log">
         <section id="log" class="container">
           <h2>Battle Log</h2>
           <ul>
@@ -74,7 +91,7 @@
               <span
                 :class="{'log--player': logMessage.actionBy === 'player', 'log--monster': logMessage.actionBy === 'monster'}"
                 >{{ logMessage.actionBy === 'player' ? char.name :
-                'Beijing Bikini' }}</span
+                'Beijing-Bikini' }}</span
               >
               <span v-if="logMessage.actionType === 'heal'">
                 heals himself using "{{ char.heal }}" for
