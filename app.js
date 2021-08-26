@@ -13,16 +13,72 @@ const app = Vue.createApp({
       logMessages: [],
       attacksAvailable: true,
       chars: [
-        'KG-Teacher',
-        'Dada DJ',
-        'Wide Body',
-        'Nigerian Bro',
-        'Water Man',
-        'Jinshisong',
-        'Bundled Baby',
+        {
+          name: 'Kindergarten Teacher',
+          class: 'LaoWai',
+          attack: 'Bu Yao!',
+          special: 'Play Hangman!',
+          heal: 'Drink Beer!',
+          image: './laowai.png'
+        },
+        {
+          name: 'Dada DJ',
+          class: 'LaoWai',
+          attack: 'Bathroom Bump!',
+          special: 'Drum n Bass!',
+          heal: 'Do Shot!',
+          image: './dada.jpeg'
+        },
+        {
+          name: 'Wide Body',
+          class: 'LaoWai',
+          attack: 'Poop!',
+          special: 'Spelling Snakes!',
+          heal: 'Big Mac For No Reason!',
+          image: './wb.png'
+        },
+        {
+          name: 'Nigerian Bro',
+          class: 'LaoWai',
+          attack: 'Sup Bro, you good?',
+          special: 'Bag',
+          heal: 'Re-up',
+          image: './richy.jpeg'
+        },
+        {
+          name: 'Water Man',
+          class: 'Delivery',
+          attack: 'Jug Drop Off!',
+          special: 'Wreckless Driving!',
+          heal: 'Refill',
+          image: './water.jpeg'
+        },
+        {
+          name: 'Jinshisong',
+          class: 'Delivery',
+          attack: 'Delivery Fee!',
+          special: 'Wrong Order!',
+          heal: 'Gets Paid!',
+          image: './jinshisong.jpeg'
+        },
+        {
+          name: 'JianBing Queen',
+          class: 'Vendor',
+          attack: 'Scallions!',
+          special: 'La Jiao!',
+          heal: 'Weixin Zhifu!',
+          image: './jian.jpg'
+        },
       ],
       index: 0,
-      char: '',
+      char: {
+        name: 'Kindergarten Teacher',
+        class: 'LaoWai',
+        attack: 'Bu Yao!',
+        special: 'Play Hangman!',
+        heal: 'Craft Beer!',
+        image: './laowai.png'
+      },
     };
   },
   computed: {
@@ -145,7 +201,7 @@ const app = Vue.createApp({
     indexDown() {
       if (this.index > 0) {
         this.index--;
-        console.log('poo')
+        console.log('poo');
       }
     },
     indexUp() {
@@ -153,6 +209,7 @@ const app = Vue.createApp({
         this.index++;
       }
     },
+    getPlayerName() {},
   },
 });
 

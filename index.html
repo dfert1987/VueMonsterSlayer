@@ -35,10 +35,10 @@
         <h2>VS</h2>
         <section id="player" class="container">
           <div class="char-info">
-            <h2>P1: Kindergarten Teacher</h2>
-            <h3 class="class-type">Class: LaoWai</h3>
+            <h2>P1: {{ char.name }}</h2>
+            <h3 class="class-type">Class: {{ char.class }}</h3>
           </div>
-          <img class="player-image" src="./laowai.png" />
+          <img class="player-image" :src= "char.image"/>
           <div class="bar-and-hp">
             <p class="hp-bar">HP</p>
             <div class="healthbar">
@@ -48,7 +48,7 @@
           <h4 class="hp-fraction">{{ getPlayerHealth() }}/100</h4>
         </section>
       </div>
-      <section class="choose-character-container">
+      <section v-if="currentRound === 0" class="choose-character-container">
         <h2 class="choose-char">Choose Your Hero!</h2>
         <div class="select-char-container">
           <button @click="indexDown" class="left-arrow">
@@ -73,11 +73,11 @@
             <li v-for="logMessage in logMessages">
               <span
                 :class="{'log--player': logMessage.actionBy === 'player', 'log--monster': logMessage.actionBy === 'monster'}"
-                >{{ logMessage.actionBy === 'player' ? 'Kindergarten Teacher' :
+                >{{ logMessage.actionBy === 'player' ? char.name :
                 'Beijing Bikini' }}</span
               >
               <span v-if="logMessage.actionType === 'heal'">
-                heals himself using beer for
+                heals himself using "{{ char.heal }}" for
                 <span class="log--heal">
                   {{ logMessage.actionValue }} hp regeneration.</span
                 >
@@ -85,7 +85,7 @@
               <span
                 v-else-if="logMessage.actionType === 'attack' && logMessage.actionBy === 'player'"
               >
-                attacks using "Bu Yao!" and deals
+                attacks using "{{char.attack}}" and deals
                 <span class="log--damage"
                   >{{ logMessage.actionValue }} hp in damage.</span
                 >
@@ -107,7 +107,7 @@
                 >
               </span>
               <span v-else>
-                attacks using "Play Hangman!" and deals
+                attacks using "{{char.special}}" and deals
                 <span class="log--damage"
                   >{{ logMessage.actionValue }} hp in damage.</span
                 >
@@ -117,16 +117,16 @@
         </section>
         <section id="controls" v-else>
           <button :disabled="attacksAvailable === false" @click="attackMonster">
-            Basic: 'Bu Yao!'
+            Basic: {{char.attack}}
           </button>
           <button
             :disabled="specialAttackAvailable || attacksAvailable === false"
             @click="specialAttackMonster"
           >
-            Special: 'Play Hangman'
+            Special: {{char.special}}
           </button>
           <button :disabled="attacksAvailable === false" @click="healPlayer">
-            HEAL: Drink Beer
+            HEAL: {Drink Beer}
           </button>
           <button @click="surrender">SURRENDER</button>
         </section>
