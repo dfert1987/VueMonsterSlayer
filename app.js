@@ -201,7 +201,6 @@ const app = Vue.createApp({
     indexDown() {
       if (this.index > 0) {
         this.index--;
-        console.log('poo');
       }
     },
     indexUp() {

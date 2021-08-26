@@ -51,10 +51,10 @@
       <section v-if="currentRound === 0" class="choose-character-container">
         <h2 class="choose-char">Choose Your Hero!</h2>
         <div class="select-char-container">
-          <button @click="indexDown" class="left-arrow">
+          <button :disabled="index === 0" @click="indexDown" class="left-arrow">
             <img class="arrow" src="./white-arrow-png-41962.png" />
           </button>
-          <button @click="indexUp" class="right-arrow">
+          <button :disabled="index === chars.length - 1" @click="indexUp" class="right-arrow">
             <img class="arrow" src="./white-arrow-png-41958.png" />
           </button>
         </div>
