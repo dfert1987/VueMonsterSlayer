@@ -20,10 +20,10 @@
       <div class="char-container">
         <section id="monster" class="container">
           <div class="char-info">
-            <h2>CPU: Beijing Bikini</h2>
-            <h3 class="class-type">Class: LaoRen</h3>
+            <h2>CPU: {{enemy.name}}</h2>
+            <h3 class="class-type">Class: {{enemy.class}}</h3>
           </div>
-          <img class="monster-image" src="./images/bjbikini.png" />
+          <img class="monster-image" :src="enemy.image" />
           <div class="bar-and-hp">
             <p class="hp-bar">HP</p>
             <div class="healthbar">
@@ -52,7 +52,9 @@
         <div class="enemy-p1-choose">
           <div class="randomizer-container">
             <h2 class="enemy-title">Get and Enemy</h2>
-            <button class="randomizer">Random Enemy</button>
+            <button @click="getRandomNumber" class="randomizer">
+              Random Enemy
+            </button>
           </div>
           <div class="player-select">
             <h2 class="choose-char">Choose Your Hero!</h2>
@@ -74,7 +76,7 @@
             </div>
           </div>
         </div>
-        <button @click="start = true"class="start">START</button>
+        <button @click="start = true" class="start">START</button>
       </div>
       <section class="container" v-if="winner">
         <h2>Game Over!</h2>
@@ -110,7 +112,7 @@
               <span
                 v-else-if="logMessage.actionType === 'attack' && logMessage.actionBy === 'monster'"
               >
-                attacks using "Belly Rub!" and deals
+                attacks using {{ enemy.attack }} and deals
                 <span class="log--damage"
                   >{{ logMessage.actionValue }} hp in damage.</span
                 >
@@ -118,7 +120,7 @@
               <span
                 v-else-if="logMessage.actionType === 'special' && logMessage.actionBy === 'monster'"
               >
-                attacks using "Baijiu burp!" and deals
+                attacks using {{ enemy.special }} and deals
                 <span class="log--damage"
                   >{{ logMessage.actionValue }} hp in damage.</span
                 >

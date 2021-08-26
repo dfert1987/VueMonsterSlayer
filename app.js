@@ -110,7 +110,7 @@ const app = Vue.createApp({
           attack: 'Smoke',
           special: 'Loogie',
           heal: 'Phone game!',
-          image: './images/taxi.jpeg',
+          image: './images/squatter.jpeg',
         },
         {
           name: 'Yellow Weasel',
@@ -191,6 +191,9 @@ const app = Vue.createApp({
     },
     index(value) {
       this.char = this.chars[value];
+    },
+    enemyIndex(value) {
+      this.enemy = this.enemies[value];
     },
   },
   methods: {
@@ -289,6 +292,7 @@ const app = Vue.createApp({
         Math.random() * (this.enemies.length - 2) + 1
       );
       console.log(this.enemyIndex);
+      console.log(this.enemy);
     },
   },
 });
