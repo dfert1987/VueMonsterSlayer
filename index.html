@@ -58,7 +58,7 @@
             <h2 class="choose-char">Choose Your Hero!</h2>
             <div class="select-char-container">
               <button
-                :disabled="index === 0"
+                :disabled="index <= 1"
                 @click="indexDown"
                 class="left-arrow"
               >

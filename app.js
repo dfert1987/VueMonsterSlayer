@@ -14,6 +14,14 @@ const app = Vue.createApp({
       logMessages: [],
       attacksAvailable: true,
       chars: [
+      {
+        name: '???',
+        class: '???',
+        attack: '',
+        special: '',
+        heal: '',
+        image: './question.jpeg'
+      },
         {
           name: 'Kindergarten Teacher',
           class: 'LaoWai',
@@ -71,15 +79,15 @@ const app = Vue.createApp({
           image: './jian.jpg'
         },
       ],
-      index: 0,
       char: {
-        name: 'Kindergarten Teacher',
-        class: 'LaoWai',
-        attack: 'Bu Yao!',
-        special: 'Play Hangman!',
-        heal: 'Craft Beer!',
-        image: './laowai.png'
+        name: '???',
+        class: '???',
+        attack: '',
+        special: '',
+        heal: '',
+        image: './question.jpeg'
       },
+      index: 0,
     };
   },
   computed: {
