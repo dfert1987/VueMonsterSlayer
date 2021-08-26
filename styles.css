@@ -121,8 +121,8 @@ button:disabled {
 
 .hp-bar {
   font-size: 20px;
-  margin-right: .5em;
-  margin-top: .55em;
+  margin-right: 0.5em;
+  margin-top: 0.55em;
 }
 
 .bar-and-hp {
@@ -185,7 +185,44 @@ button:disabled {
 }
 
 .text-container {
-
   font-size: 25px;
   margin-left: 2.5em;
+}
+
+.char-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.class-type {
+  margin: 0;
+  margin-left: 0.25em;
+}
+
+.choose-char {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.select-char-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.left-arrow {
+  padding: 0;
+  width: 100px;
+}
+
+.right-arrow {
+  padding: 0;
+  width: 100px;
+}
+
+.arrow {
+  color: white;
+  height: 50px;
+  margin: 0;
 }
