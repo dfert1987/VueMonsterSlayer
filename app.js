@@ -361,7 +361,7 @@ const app = Vue.createApp({
           attack: 'Mase!',
           special: 'Pee Test!',
           heal: 'Bribe!',
-          image: './images/ebike.jpeg',
+          image: './images/chinesepolice.jpeg',
         },
         {
           name: 'Zhang Mama',
