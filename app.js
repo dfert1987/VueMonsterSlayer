@@ -255,28 +255,32 @@ const app = Vue.createApp({
           special: 'LaDuzi!',
           heal: 'Fresh Oil!',
           image: './images/malatang.jpeg',
-        },{
+        },
+        {
           name: 'Middle School Gang',
           class: 'XiaoPengyou',
           attack: 'Memorize!',
           special: 'Embarass!',
           heal: 'Weekend!',
           image: './images/middleschoolers.jpeg',
-        },{
+        },
+        {
           name: 'Yonghegong Monk',
           class: 'Beijinger',
           attack: 'Burn Incense!',
           special: 'Meditate!',
           heal: 'Vegetarian Meal!',
           image: './images/ebike.jpeg',
-        },{
+        },
+        {
           name: 'Scorpion Vendor',
           class: 'Vendor',
           attack: 'Gross Out!',
           special: 'La Duzi!',
           heal: 'Fresh Oil!',
           image: './images/scorpion.jpeg',
-        },{
+        },
+        {
           name: 'Selfy Stick',
           class: 'Beijinger',
           attack: 'Stick Bash!',
@@ -299,7 +303,8 @@ const app = Vue.createApp({
           special: 'Tantrum!',
           heal: 'Gets what he wants!',
           image: './images/spoiled.jpeg',
-        },{
+        },
+        {
           name: 'Street Barber',
           class: 'Beijinger',
           attack: 'Trim!',
@@ -453,7 +458,6 @@ const app = Vue.createApp({
     attackPlayer() {
       const attackValue = getRandomNumber(8, 15);
       const specialValue = getRandomNumber(10, 18);
-      console.log(this.currentRound);
       if (this.currentRound % 3 !== 0) {
         this.playerHealth -= attackValue;
         this.addLogMessage('monster', 'attack', attackValue);
@@ -534,8 +538,6 @@ const app = Vue.createApp({
       this.enemyIndex = Math.floor(
         Math.random() * (this.enemies.length - 2) + 1
       );
-      console.log(this.enemyIndex);
-      console.log(this.enemy);
     },
   },
 });

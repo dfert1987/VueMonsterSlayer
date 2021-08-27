@@ -14,13 +14,13 @@
   </head>
   <body>
     <header>
-      <h1>Hutong Hero</h1>
+      <h1 class="banner-title">Hutong Hero</h1>
     </header>
-    <div id="game">
+    <div class="main" id="game">
       <div class="char-container">
         <section id="monster" class="container">
           <div class="char-info">
-            <h2>CPU: {{enemy.name}}</h2>
+            <h2 class="name">CPU: {{enemy.name}}</h2>
             <h3 class="class-type">Class: {{enemy.class}}</h3>
           </div>
           <img class="monster-image" :src="enemy.image" />
@@ -32,10 +32,10 @@
           </div>
           <h4 class="hp-fraction">{{getMonsterHealth() }}/100</h4>
         </section>
-        <h2>VS</h2>
+        <h2 class="versus">VS</h2>
         <section id="player" class="container">
           <div class="char-info">
-            <h2>P1: {{ char.name }}</h2>
+            <h2 class="name">P1: {{ char.name }}</h2>
             <h3 class="class-type">Class: {{ char.class }}</h3>
           </div>
           <img class="player-image" :src="char.image" />
@@ -48,35 +48,39 @@
           <h4 class="hp-fraction">{{ getPlayerHealth() }}/100</h4>
         </section>
       </div>
-      <div v-if="!start" class="choose-character-container">
-        <div class="enemy-p1-choose">
-          <div class="randomizer-container">
-            <h2 class="enemy-title">Get and Enemy</h2>
-            <button @click="getRandomNumber" class="randomizer">
-              Random Enemy
+      <div class="enemy-p1-choose" v-if="!start">
+        <div class="randomizer-container">
+          <h2 class="enemy-title">Get an Enemy</h2>
+          <button @click="getRandomNumber" class="randomizer">
+            Randomizer
+          </button>
+        </div>
+        <button
+          :disabled="enemyIndex === 0 || index === 0 "
+          @click="start = true"
+          class="start"
+        >
+          START
+        </button>
+        <div class="player-select">
+          <h2 class="choose-char">Choose Your Hero!</h2>
+          <div class="select-char-container">
+            <button
+              :disabled="index <= 1"
+              @click="indexDown"
+              class="left-arrow"
+            >
+              <img class="arrow" src="./images/white-arrow-png-41962.png" />
+            </button>
+            <button
+              :disabled="index === chars.length - 1"
+              @click="indexUp"
+              class="right-arrow"
+            >
+              <img class="arrow" src="./images/white-arrow-png-41958.png" />
             </button>
           </div>
-          <div class="player-select">
-            <h2 class="choose-char">Choose Your Hero!</h2>
-            <div class="select-char-container">
-              <button
-                :disabled="index <= 1"
-                @click="indexDown"
-                class="left-arrow"
-              >
-                <img class="arrow" src="./images/white-arrow-png-41962.png" />
-              </button>
-              <button
-                :disabled="index === chars.length - 1"
-                @click="indexUp"
-                class="right-arrow"
-              >
-                <img class="arrow" src="./images/white-arrow-png-41958.png" />
-              </button>
-            </div>
-          </div>
         </div>
-        <button @click="start = true" class="start">START</button>
       </div>
       <section class="container" v-if="winner">
         <h2>Game Over!</h2>
@@ -87,7 +91,7 @@
       </section>
       <div v-if="start" class="control-and-log">
         <section id="log" class="container">
-          <h2>Battle Log</h2>
+          <h2 class="battle-log">Battle Log</h2>
           <ul>
             <li v-for="logMessage in logMessages">
               <span
@@ -135,19 +139,28 @@
           </ul>
         </section>
         <section id="controls" v-else>
-          <button :disabled="attacksAvailable === false" @click="attackMonster">
+          <button
+            class="control"
+            :disabled="attacksAvailable === false"
+            @click="attackMonster"
+          >
             Basic: {{char.attack}}
           </button>
           <button
+            class="control"
             :disabled="specialAttackAvailable || attacksAvailable === false"
             @click="specialAttackMonster"
           >
             Special: {{char.special}}
           </button>
-          <button :disabled="attacksAvailable === false" @click="healPlayer">
+          <button
+            class="control"
+            :disabled="attacksAvailable === false"
+            @click="healPlayer"
+          >
             HEAL: {{char.heal}}
           </button>
-          <button @click="surrender">SURRENDER</button>
+          <button class="control" @click="surrender">SURRENDER</button>
         </section>
       </div>
     </div>

@@ -8,15 +8,30 @@ html {
 
 body {
   margin: 0;
+  background-image: url('./images/hutong.jpeg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.main {
+  height: 90vh;
 }
 
 header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   padding: 0.5rem;
-  background-color: #880017;
-  color: white;
+  background-color: #de2910;
+  border-bottom: 2px #ffde00;
+  color: #ffde00;
   text-align: center;
-  margin-bottom: 2rem;
+}
+
+.banner-title {
+  font-family: 'Gang of Three';
+  font-size: 5em;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-shadow: 2px 2px 5px black;
 }
 
 section {
@@ -42,13 +57,19 @@ section {
 .container {
   text-align: center;
   padding: 0.5rem;
+  font-size: 19px;
+  font-weight: bold;
   margin: 1rem auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  box-shadow: 2px 2px 5px;
   border-radius: 12px;
+  background-image: url('./images/bricks.jpeg');
+  border-width: 4px;
+  border-color: black;
 }
 
 #monster h2,
 #player h2 {
+  margin-bottom: 0;
   margin: 0.25rem;
   text-align: left;
 }
@@ -61,17 +82,24 @@ section {
   justify-content: center;
 }
 
+.name {
+  font-size: 35px;
+}
+
 button {
   font: inherit;
-  border: 1px solid #88005b;
-  background-color: #88005b;
-  color: white;
+  border: 1px solid #de2910;
+  background-color: #de2910;
+  color: #ffde00;
+  font-family: 'Gang of Three';
+  font-size: 20px;
   padding: 1rem 2rem;
   border-radius: 12px;
   margin: 1rem;
   width: 12rem;
   cursor: pointer;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+  transition: ease-in 500ms;
 }
 
 button:focus {
@@ -80,8 +108,9 @@ button:focus {
 
 button:hover,
 button:active {
-  background-color: #af0a78;
-  border-color: #af0a78;
+  background-color: #ffde00;
+  border-color: #ffde00;
+  color: #de2910;
   box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.26);
 }
 
@@ -89,7 +118,7 @@ button:disabled {
   background-color: #ccc;
   border-color: #ccc;
   box-shadow: none;
-  color: #3f3f3f;
+  color: black;
   cursor: not-allowed;
 }
 
@@ -104,23 +133,35 @@ button:disabled {
 }
 
 .log--player {
-  color: #7700ff;
+  color: #ffde00;
+  font-size: 18px;
+  font-weight: bold;
+  text-shadow: 1px 1px black;
 }
 
 .log--monster {
-  color: #da8d00;
+  color: #de2910;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 1px 1px black;
 }
 
 .log--damage {
   color: red;
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: 1px 1px black;
 }
 
 .log--heal {
   color: green;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .hp-bar {
   font-size: 20px;
+  font-weight: bold;
   margin-right: 0.5em;
   margin-top: 0.55em;
 }
@@ -131,7 +172,7 @@ button:disabled {
 }
 
 .hp-fraction {
-  font-size: 20px;
+  font-size: 30px;
   margin: 0;
   text-align: right;
 }
@@ -164,11 +205,11 @@ button:disabled {
 }
 
 .log--player {
-  color: #7700ff;
+  color: #ffde00;
 }
 
 .log--monster {
-  color: #da8d00;
+  color: #de2910;
 }
 
 .log--damage {
@@ -182,6 +223,7 @@ button:disabled {
 .control-and-log {
   display: flex;
   flex-direction: row;
+  margin-bottom: 2em;
 }
 
 .text-container {
@@ -198,10 +240,22 @@ button:disabled {
 .class-type {
   margin: 0;
   margin-left: 0.25em;
+  font-size: 25px;
 }
 
+.versus {
+  font-size: 35px;
+  margin-top: 8em;
+  font-family: 'Gang of Three';
+  color: yellow;
+  text-shadow: 2px 2px black;
+}
 .choose-char {
   margin-bottom: 0;
+  font-family: 'Gang of Three';
+  text-shadow: 2px 2px black;
+  color: #ffde00;
+  font-size: 35px;
   text-align: center;
 }
 
@@ -241,15 +295,33 @@ button:disabled {
 .enemy-title {
   margin-bottom: 0;
   text-align: center;
+  color: #ffde00;
+  font-size: 35px;
+  text-shadow: 2px 2px 4px black;
+  font-family: 'Gang of Three';
 }
 
 .enemy-p1-choose {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .start {
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 2em;
+  position: relative;
+  left: 2em;
+  margin-top: 4em;
+  padding: 0;
+  height: 3em;
+}
+
+.control:disabled {
+  text-shadow: 0;
+}
+
+.battle-log {
+  font-family: 'Gang of Three';
+  color: #ffde00;
+  text-shadow: 2px 2px black;
 }
