@@ -509,7 +509,9 @@ const app = Vue.createApp({
         actionType: what,
         actionValue: value,
       });
-      if (this.log)
+      if (this.logMessages.length > 6) {
+        this.logMessages.pop();
+      }
     },
     getPlayerHealth() {
       if (this.playerHealth > 0) {
