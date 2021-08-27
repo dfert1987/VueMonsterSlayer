@@ -334,7 +334,7 @@ const app = Vue.createApp({
           attack: 'Cute Pose!',
           special: 'Photo Filter!',
           heal: 'Honeymoon!',
-          image: './images/ebike.jpeg',
+          image: './images/wedding.jpg',
         },
         {
           name: 'Bank of China Teller',
@@ -366,7 +366,7 @@ const app = Vue.createApp({
           attack: 'Mase!',
           special: 'Pee Test!',
           heal: 'Bribe!',
-          image: './images/chinesepolice.jpeg',
+          image: './images/chinesepolice.jpg',
         },
         {
           name: 'Zhang Mama',
@@ -509,6 +509,9 @@ const app = Vue.createApp({
         actionType: what,
         actionValue: value,
       });
+      if (this.logMessages.length > 6) {
+        this.logMessages.pop();
+      }
     },
     getPlayerHealth() {
       if (this.playerHealth > 0) {
